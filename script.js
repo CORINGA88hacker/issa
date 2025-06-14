@@ -1,9 +1,9 @@
-<script>
 async function loadPosts() {
   const container = document.getElementById("posts-container");
 
   const posts = [
     "noticia-1.md"
+    // Adicione mais arquivos aqui, ex: "noticia-2.md"
   ];
 
   for (const postUrl of posts) {
@@ -12,7 +12,6 @@ async function loadPosts() {
       const text = await res.text();
       const html = markdownToHtml(text);
       const article = document.createElement("article");
-      article.classList.add("post");
       article.innerHTML = html;
       container.appendChild(article);
     } catch (e) {
@@ -27,7 +26,10 @@ function markdownToHtml(md) {
     .replace(/^## (.*$)/gim, '<h3>$1</h3>')
     .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
     .replace(/\*(.*?)\*/gim, '<em>$1</em>')
-    .replace(/!\[(.*?)\]\((.*?)\)/gim, '<img src="$2" alt="$1" style="max-width:100%;border-radius:10px;margin:10px 0;">')
+    .replace(/!\[(.*?)\]\((.*?)\)/gim, `
+      <div style="margin: 1rem 0; text-align: center;">
+        <img src="$2" alt="$1" style="max-width:100%; border-radius:10px; box-shadow: 0 0 10px #7f39fb;">
+      </div>`)
     .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" target="_blank">$1</a>')
     .replace(/\n{2,}/g, '<br><br>');
 }
