@@ -31,3 +31,7 @@ async function loadPosts() {
 }
 
 window.addEventListener("DOMContentLoaded", loadPosts);
+const posts = [
+  "posts/noticia-1.md",
+  "posts/noticia-2.md"
+];
