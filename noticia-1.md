@@ -1,5 +1,5 @@
 [# Primeira Notícia do Maninho News]  
-[imagem](https://i.pinimg.com/736x/38/91/09/389109b5993e4a608059441796e727f2.jpg)
+[imag](https://i.pinimg.com/736x/38/91/09/389109b5993e4a608059441796e727f2.jpg)
 
 **Publicado em:** 14 de junho de 2025
 
