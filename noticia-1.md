@@ -1,12 +1,7 @@
-[# Primeira Notícia do Maninho News]  
-[imag](https://i.pinimg.com/736x/38/91/09/389109b5993e4a608059441796e727f2.jpg)
+# Nova Notícia
 
-**Publicado em:** 14 de junho de 2025
+Veja essa imagem:
 
-Este é um exemplo de notícia carregada diretamente do GitHub. Para criar novas postagens, basta adicionar novos arquivos `.md` na raiz do repositório.
+![Cena épica](https://i.pinimg.com/736x/38/91/09/389109b5993e4a608059441796e727f2.jpg)
 
-## Subtítulo ou destaque
-
-Conteúdo de exemplo da notícia, com **texto em negrito** e *itálico*.
-
-[Leia mais](https://g1.globo.com/)
+Continue lendo a **notícia completa** [aqui](https://google.com).
