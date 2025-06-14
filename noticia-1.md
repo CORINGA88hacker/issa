@@ -1,9 +1,9 @@
-# Bem-vindo!
+# Polícia investiga caso de roubo em São Paulo
 
-Aqui é onde você encontra as **melhores notícias**.
+**Publicado em 14/06/2025**
 
-Veja essa imagem:
+A polícia de São Paulo está investigando um caso de roubo ocorrido na madrugada desta quinta-feira.
 
-![Logo](https://i.pinimg.com/736x/38/91/09/389109b5993e4a608059441796e727f2.jpg)
+Segundo as autoridades, o suspeito fugiu em direção à zona norte.
 
-Quer mais? [Clique aqui]( ).
+[Ver matéria completa](https://g1.globo.com/sp/sao-paulo/noticia/2025/06/14/)
