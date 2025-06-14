@@ -1,47 +1,33 @@
 async function loadPosts() {
   const container = document.getElementById("posts-container");
-
-  // Lista de arquivos Markdown
-  const posts = [
-    "noticia-1.md"
+  const links = [
+    "https://g1.globo.com", // Substitua por URLs reais de notícias
+    "https://www.cnnbrasil.com.br/"
   ];
 
-  for (const postUrl of posts) {
+  for (const url of links) {
     try {
-      const res = await fetch(postUrl);
+      const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+      const data = await res.json();
+      const html = data.contents;
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
 
-      // Verifica se o arquivo foi encontrado
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status} - ${res.statusText}`);
-      }
+      const title = doc.querySelector("h1")?.innerText || "Notícia sem título";
+      const paragraphs = [...doc.querySelectorAll("p")].slice(0, 3).map(p => `<p>${p.innerText}</p>`).join("");
+      const image = doc.querySelector("img")?.src || "";
 
-      const text = await res.text();
-
-      console.log(`✔️ Carregado: ${postUrl}`);
-      console.log(text); // Mostra conteúdo bruto do markdown
-
-      const html = markdownToHtml(text);
       const article = document.createElement("article");
-      article.innerHTML = html;
+      article.innerHTML = `
+        <h2>${title}</h2>
+        ${image ? `<img src="${image}" style="max-width:100%;border-radius:12px;">` : ""}
+        ${paragraphs}
+      `;
       container.appendChild(article);
     } catch (e) {
-      console.error("❌ Erro ao carregar post:", postUrl, e);
+      console.error("Erro ao carregar:", url, e);
     }
   }
-}
-
-function markdownToHtml(md) {
-  return md
-    .replace(/^# (.*$)/gim, '<h2>$1</h2>')
-    .replace(/^## (.*$)/gim, '<h3>$1</h3>')
-    .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
-    .replace(/!\[(.*?)\]\((.*?)\)/gim, `
-      <div style="margin: 1rem 0; text-align: center;">
-        <img src="$2" alt="$1" style="max-width:100%; border-radius:10px; box-shadow: 0 0 10px #7f39fb;">
-      </div>`)
-    .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" target="_blank">$1</a>')
-    .replace(/\n{2,}/g, '<br><br>');
 }
 
 window.addEventListener("DOMContentLoaded", loadPosts);
