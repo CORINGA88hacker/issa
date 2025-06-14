@@ -1,21 +1,31 @@
 async function loadPosts() {
   const container = document.getElementById("posts-container");
 
+  // Lista de arquivos Markdown
   const posts = [
     "noticia-1.md"
-    // Adicione mais arquivos aqui, ex: "noticia-2.md"
   ];
 
   for (const postUrl of posts) {
     try {
       const res = await fetch(postUrl);
+
+      // Verifica se o arquivo foi encontrado
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status} - ${res.statusText}`);
+      }
+
       const text = await res.text();
+
+      console.log(`✔️ Carregado: ${postUrl}`);
+      console.log(text); // Mostra conteúdo bruto do markdown
+
       const html = markdownToHtml(text);
       const article = document.createElement("article");
       article.innerHTML = html;
       container.appendChild(article);
     } catch (e) {
-      console.error("Erro ao carregar post:", postUrl, e);
+      console.error("❌ Erro ao carregar post:", postUrl, e);
     }
   }
 }
@@ -35,4 +45,3 @@ function markdownToHtml(md) {
 }
 
 window.addEventListener("DOMContentLoaded", loadPosts);
-</script>
